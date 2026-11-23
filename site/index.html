@@ -1,0 +1,471 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>วิทย์ ท่าเรือ · แกลเลอรีพระเครื่อง</title>
+<meta name="description" content="แกลเลอรีจัดแสดงพระเครื่องจากคอลเลกชันส่วนตัว">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Thai:wght@400;500;700&family=IBM+Plex+Sans+Thai:wght@400;500;600&family=Kanit:wght@300&display=swap">
+<style>
+:root{
+  --bg:#3A482E; --deep:#2F3A26; --surface:#4B553A; --plate:#487564;
+  --line:#6C845A; --line2:#79958C; --fg:#F4F5EE; --fg2:#D5D9C6; --muted:#C3C6B1;
+  --accent:#B8D088; --accent-ink:#2A3521;
+  --display:'Noto Serif Thai',Georgia,serif; --body:'IBM Plex Sans Thai',system-ui,sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--body);font-size:17px;line-height:1.7}
+img{max-width:100%}
+a{color:var(--accent)}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.wrap{max-width:1280px;margin:0 auto;padding-inline:24px}
+@media (max-width:480px){.wrap{padding-inline:16px}}
+header.top{border-bottom:1px solid var(--line)}
+header.top .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 24px;padding-block:16px}
+.brand{display:flex;align-items:center;gap:12px;font-family:var(--display);font-weight:700;font-size:21px;color:var(--fg);text-decoration:none}
+nav.main{display:flex;flex-wrap:wrap;align-items:center;gap:4px 24px}
+nav.main a{color:var(--fg2);text-decoration:none;padding:10px 0}
+nav.main a:hover{color:var(--fg)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 18px;border-radius:6px;border:1px solid var(--line2);background:transparent;color:var(--fg);cursor:pointer;font-size:15px}
+.hero{text-align:center;display:flex;flex-direction:column;align-items:center;gap:20px;padding-block:96px 72px}
+.eyebrow{margin:0;color:var(--accent);font-weight:600;letter-spacing:.16em;font-size:14px}
+.hero h1{margin:0;font-family:var(--display);font-weight:500;font-size:clamp(38px,5.4vw,72px);line-height:1.3;text-wrap:balance}
+.hero p{margin:0;color:var(--fg2);max-width:40rem;white-space:pre-line}
+.rail{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;padding-block:20px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-bottom:48px}
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pill{min-height:44px;padding:0 18px;border-radius:999px;border:1px solid var(--line2);background:transparent;color:var(--fg2);cursor:pointer;font-size:15px}
+.pill[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);font-weight:600}
+.count{color:var(--muted);font-size:15px}
+.rail-end{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.search{position:relative;display:flex;align-items:center}
+.search svg{position:absolute;left:16px;color:var(--muted);pointer-events:none}
+.search input{min-height:44px;width:min(260px,72vw);padding:0 40px 0 44px;border-radius:999px;border:1px solid var(--line2);background:rgba(0,0,0,.12);color:var(--fg);font:inherit;font-size:15px}
+.search input::placeholder{color:var(--muted)}
+.search input:focus{outline:none;border-color:var(--accent)}
+.search input::-webkit-search-cancel-button{-webkit-appearance:none}
+.search .clr{position:absolute;right:6px;width:32px;height:32px;border:0;border-radius:50%;background:transparent;color:var(--muted);cursor:pointer;font-size:18px;line-height:1}
+@media (max-width:640px){.rail-end{width:100%}.search,.search input{width:100%}}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(calc(50% - 8px),185px),1fr));gap:28px 16px;padding-bottom:104px}
+.card{all:unset;cursor:pointer;display:flex;flex-direction:column;gap:10px;min-width:0}
+.card:focus-visible{outline:2px solid var(--accent);outline-offset:6px}
+.mat{aspect-ratio:4/5;max-width:100%;background:var(--surface);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;padding:8%}
+.card:hover .mat{border-color:var(--line2)}
+.plate{width:100%;height:100%;background:var(--plate);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:var(--fg2);font-size:14px;box-shadow:0 18px 40px rgba(0,0,0,.35);overflow:hidden}
+.plate img{width:100%;height:100%;object-fit:contain;display:block}
+.label{display:flex;gap:16px;align-items:baseline;min-width:0}
+.no{color:var(--accent);font-family:var(--display);font-size:15px;flex:none;font-variant-numeric:tabular-nums}
+.label .name{font-family:var(--display);font-weight:500;font-size:15px;line-height:1.45;overflow-wrap:anywhere}
+.label .meta{color:var(--muted);font-size:12px}
+.note{grid-column:1/-1;text-align:center;color:var(--muted);padding:48px 16px;border:1px dashed var(--line2)}
+section.about{background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+section.about .wrap{padding-block:96px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:56px;align-items:center}
+section.about h2{margin:0;font-family:var(--display);font-weight:500;font-size:38px;line-height:1.35}
+section.about p{margin:0;color:var(--fg2);white-space:pre-line}
+.about-text{display:flex;flex-direction:column;gap:16px;min-width:0}
+.about-mark{aspect-ratio:1/1;max-width:100%;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--accent)}
+footer{background:var(--deep)}
+footer .wrap{padding-block:80px 32px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px}
+footer h2{margin:0;font-family:var(--display);font-weight:500;font-size:32px}
+.contacts{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 32px;color:var(--fg2)}
+.copy{margin-top:40px;padding-top:20px;border-top:1px solid var(--surface);width:100%;color:var(--muted);font-size:14px}
+.overlay{position:fixed;inset:0;z-index:50;background:rgba(30,38,24,.94);overflow-y:auto;padding:calc(env(safe-area-inset-top,0px) + 24px) 16px calc(env(safe-area-inset-bottom,0px) + 24px)}
+.dialog{max-width:1080px;margin:16px auto;background:var(--surface);border:1px solid var(--line);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr))}
+.view{aspect-ratio:4/5;max-width:100%;background:var(--plate);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:var(--fg2);overflow:hidden}
+.mat{position:relative}
+.st{display:inline-flex;align-items:center;min-height:26px;padding:0 12px;border-radius:999px;font-size:13px;font-weight:600;letter-spacing:.02em;white-space:nowrap}
+.st-show{background:rgba(47,58,38,.88);color:var(--fg2);border:1px solid var(--line2)}
+.st-ask{background:var(--accent);color:var(--accent-ink)}
+.st-sold{background:#F2B8A6;color:#3A2420}
+.st-corner{position:absolute;top:6px;left:6px;z-index:2;font-size:11px}
+.plate.is-sold img{filter:grayscale(.55) brightness(.85) drop-shadow(0 16px 28px rgba(0,0,0,.4))}
+.vhead{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+.askbtn{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);font-weight:600}
+.soldnote{margin:0;color:var(--muted);font-size:15px}
+/* ลายน้ำ */
+.plate.hasimg,.view.hasimg{position:relative}
+.plate.hasimg::after,.view.hasimg::after{content:'วิทย์ ท่าเรือ';position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);white-space:nowrap;pointer-events:none;user-select:none;font-family:'Kanit',var(--body);font-weight:300;letter-spacing:.06em;color:rgba(255,255,255,.4);text-shadow:0 1px 3px rgba(0,0,0,.35);z-index:1}
+.plate.hasimg::after{font-size:clamp(12px,1.3vw,17px)}
+.view.hasimg::after{font-size:clamp(32px,7vw,64px)}
+.plate.hasimg img,.view.hasimg img{-webkit-touch-callout:none}
+.plate.hasimg{background:transparent;box-shadow:none}
+.plate.hasimg img{filter:drop-shadow(0 16px 28px rgba(0,0,0,.4))}
+.view{position:relative}
+.view.hasimg{aspect-ratio:auto;background:transparent;display:block;align-self:start}
+.view.hasimg img{height:auto}
+.view img{width:100%;height:100%;object-fit:contain;display:block;transform-origin:center;user-select:none;-webkit-user-drag:none;cursor:zoom-in}
+@media (prefers-reduced-motion:no-preference){.view img{transition:transform .2s ease}.view img.grabbing{transition:none}}
+.view.zoomed img{cursor:grab;touch-action:none}
+.view img.grabbing{cursor:grabbing}
+.zoombar{z-index:2;position:absolute;right:12px;bottom:12px;display:flex;align-items:center;gap:4px;padding:4px;border-radius:999px;background:rgba(30,38,24,.85);border:1px solid var(--line2)}
+.zbtn{min-width:44px;height:44px;border-radius:999px;border:0;background:transparent;color:var(--fg);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;padding:0 10px;font-size:14px}
+.zbtn:hover{background:var(--surface)} .zbtn[disabled]{opacity:.4;cursor:default;background:transparent}
+.zlevel{min-width:48px;text-align:center;font-size:14px;color:var(--fg2);font-variant-numeric:tabular-nums}
+.zhint{z-index:2;position:absolute;left:12px;top:12px;padding:2px 10px;border-radius:999px;background:rgba(30,38,24,.85);color:var(--fg2);font-size:13px;pointer-events:none}
+.info{padding:36px;display:flex;flex-direction:column;gap:18px;min-width:0}
+@media (max-width:480px){.info{padding:24px 18px}}
+.info h2{margin:0;font-family:var(--display);font-weight:500;font-size:30px;line-height:1.4;overflow-wrap:anywhere}
+.row{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px}
+dl.spec{margin:0;display:grid;grid-template-columns:max-content minmax(0,1fr);gap:8px 24px;font-size:16px}
+dl.spec dt{color:var(--muted)} dl.spec dd{margin:0;overflow-wrap:anywhere}
+.story{margin:0;color:var(--fg2);border-top:1px solid var(--line);padding-top:18px;white-space:pre-line}
+.iconbtn{width:44px;height:44px;border-radius:50%;border:1px solid var(--line2);background:transparent;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;flex:none}
+@media (prefers-reduced-motion:no-preference){.plate{transition:transform .3s ease}.card:hover .plate{transform:scale(1.02)}}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+/* ====== ตั้งค่า: ใส่รหัส Google Sheet ของคุณตรงนี้ ====== */
+var SHEET_ID = '1I5qNFU9Npz59rUu0zOjCN8ToYdAusSi2dRjJGnDYPfw';
+var TAB_ITEMS = 'ข้อมูลพระ';
+var TAB_SITE = 'ข้อมูลเว็บ';
+/* ====================================================== */
+
+(function(){
+  var app = document.getElementById('app');
+  var site = { 'ชื่อแกลเลอรี': 'วิทย์ ท่าเรือ', 'หัวเรื่อง': 'สมบัติแห่งศรัทธา', 'คำนำ': '', 'ชื่อผู้สะสม': '', 'เรื่องราวผู้สะสม': '', 'LINE': '', 'โทร': '', 'Facebook': '', 'ที่อยู่': '' };
+  var items = [], state = 'loading';
+  var ui = { cat: 'ทั้งหมด', open: -1, side: 'front', q: '' };
+  var AMULET = '<svg width="60" height="75" viewBox="0 0 36 45" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><path d="M18 2 C8 2 4 14 4 25 L4 43 L32 43 L32 25 C32 14 28 2 18 2 Z"/><path d="M18 9 C13 9 10.5 16 10.5 24 L10.5 36 L25.5 36 L25.5 24 C25.5 16 23 9 18 9 Z"/></svg>';
+
+  function esc(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+  function parseCSV(t){
+    var rows = [], row = [], f = '', q = false;
+    for (var i = 0; i < t.length; i++) {
+      var c = t[i];
+      if (q) { if (c === '"') { if (t[i+1] === '"') { f += '"'; i++; } else q = false; } else f += c; }
+      else if (c === '"') q = true;
+      else if (c === ',') { row.push(f); f = ''; }
+      else if (c === '\n') { row.push(f); rows.push(row); row = []; f = ''; }
+      else if (c !== '\r') f += c;
+    }
+    if (f !== '' || row.length) { row.push(f); rows.push(row); }
+    return rows;
+  }
+  function img(u){
+    u = (u || '').trim(); if (!u) return '';
+    if (/drive\.google\.com|docs\.google\.com/.test(u)) {
+      var m = u.match(/\/d\/([\w-]+)/) || u.match(/[?&]id=([\w-]+)/);
+      if (m) return 'https://drive.google.com/thumbnail?id=' + m[1] + '&sz=w1200';
+    }
+    return u;
+  }
+  function tab(name){
+    return fetch('https://docs.google.com/spreadsheets/d/' + SHEET_ID + '/gviz/tq?tqx=out:csv&headers=1&sheet=' + encodeURIComponent(name))
+      .then(function(r){ if (!r.ok) throw new Error(r.status); return r.text(); }).then(parseCSV);
+  }
+  function load(){
+    Promise.all([tab(TAB_ITEMS), tab(TAB_SITE)]).then(function(r){
+      var rows = r[0], head = (rows.shift() || []).map(function(h){ return h.trim(); });
+      function col(row, name){ var i = head.indexOf(name); return i < 0 ? '' : (row[i] || '').trim(); }
+      items = rows.map(function(row){
+        return { name: col(row, 'ชื่อพระ'), cat: col(row, 'หมวด') || 'อื่น ๆ', era: col(row, 'ยุค / ปีที่สร้าง'), material: col(row, 'เนื้อพระ'), size: col(row, 'ขนาด'), source: col(row, 'ที่มา'), story: col(row, 'ประวัติและเรื่องราว'), front: img(col(row, 'ลิงก์รูปด้านหน้า')), back: img(col(row, 'ลิงก์รูปด้านหลัง')), show: col(row, 'แสดงบนเว็บ'), status: col(row, 'สถานะ'), extra: img(col(row, 'ลิงก์รูปเพิ่มเติม')) };
+      }).filter(function(it){ return it.name && !/^(ไม่|ไม่แสดง|no|false|ซ่อน)$/i.test(it.show); });
+      r[1].forEach(function(row){ var k = (row[0] || '').trim(); if (k && k !== 'หัวข้อ') site[k] = (row[1] || '').trim(); });
+      state = 'ready'; render();
+    }).catch(function(){ state = 'error'; render(); });
+  }
+  function cats(){ var s = []; items.forEach(function(i){ if (s.indexOf(i.cat) < 0) s.push(i.cat); }); return ['ทั้งหมด'].concat(s); }
+  function norm(s){ return String(s || '').toLowerCase().replace(/\s+/g, ''); }
+  function list(){ var q = norm(ui.q); return items.filter(function(i){ return (ui.cat === 'ทั้งหมด' || i.cat === ui.cat) && (!q || norm(i.name + ' ' + i.cat).indexOf(q) >= 0); }); }
+  function no(it){ return 'No. ' + String(items.indexOf(it) + 1).padStart(2, '0'); }
+  function meta(it){ return [it.era, it.material].filter(Boolean).map(esc).join(' · '); }
+  function st(it){ var v = (it.status || '').trim(); return /ขาย/.test(v) ? 'sold' : /สอบถาม/.test(v) ? 'ask' : 'show'; }
+  var ST_LABEL = { sold: 'ขายแล้ว', ask: 'สอบถาม', show: 'โชว์' };
+  function badge(it, cls){ var k = st(it); return '<span class="st st-' + k + (cls ? ' ' + cls : '') + '">' + ST_LABEL[k] + '</span>'; }
+  function pic(src, alt){ return src ? '<img src="' + esc(src) + '" alt="' + esc(alt) + '" loading="lazy">' : '<span style="color:var(--accent)">' + AMULET + '</span><span>ยังไม่มีรูป</span>'; }
+
+  function render(){
+    var L = list(), h = '';
+    document.title = (site['ชื่อแกลเลอรี'] || 'แกลเลอรีพระเครื่อง') + ' · แกลเลอรีพระเครื่อง';
+    h += '<header class="top"><div class="wrap"><a href="#top" class="brand"><svg width="30" height="30" viewBox="0 0 36 36" fill="none" stroke="var(--accent)" stroke-width="1.6" aria-hidden="true"><path d="M18 3 C10 3 7 12 7 20 L7 33 L29 33 L29 20 C29 12 26 3 18 3 Z"/><path d="M18 10 C14 10 12.5 15 12.5 20 L12.5 28 L23.5 28 L23.5 20 C23.5 15 22 10 18 10 Z"/></svg>' + esc(site['ชื่อแกลเลอรี']) + '</a><nav class="main" aria-label="เมนูหลัก"><a href="#collection">คอลเลกชัน</a><a href="#about">เกี่ยวกับ</a><a href="#contact">ติดต่อ</a></nav></div></header>';
+    h += '<section id="top" class="wrap hero"><p class="eyebrow">คอลเลกชันส่วนตัว</p><h1>' + esc(site['หัวเรื่อง']) + '</h1><svg width="160" height="14" viewBox="0 0 160 14" fill="none" stroke="var(--accent)" aria-hidden="true"><path d="M0 7 H62"/><path d="M98 7 H160"/><path d="M80 1 L86 7 L80 13 L74 7 Z"/><circle cx="68" cy="7" r="1.5"/><circle cx="92" cy="7" r="1.5"/></svg>' + (site['คำนำ'] ? '<p>' + esc(site['คำนำ']) + '</p>' : '') + '</section>';
+    h += '<section id="collection" class="wrap">';
+    if (state === 'ready') {
+      h += '<div class="rail"><div class="pills" role="group" aria-label="หมวดพระ">';
+      cats().forEach(function(c){ h += '<button type="button" class="pill" data-cat="' + esc(c) + '" aria-pressed="' + (ui.cat === c) + '">' + esc(c) + '</button>'; });
+      h += '</div><div class="rail-end"><label class="search"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20 L16 16"/></svg><input type="search" id="q" placeholder="ค้นหาชื่อพระ หรือประเภท" aria-label="ค้นหาพระเครื่องจากชื่อหรือประเภท" value="' + esc(ui.q) + '" autocomplete="off">' + (ui.q ? '<button type="button" class="clr" data-act="clrq" aria-label="ล้างคำค้นหา">×</button>' : '') + '</label><span class="count">' + (ui.q ? 'พบ ' : 'จัดแสดง ') + L.length + ' องค์</span></div></div>';
+    }
+    h += '<div class="grid">';
+    if (state === 'loading') h += '<p class="note">กำลังโหลดคอลเลกชัน…</p>';
+    else if (state === 'error') h += '<p class="note">โหลดข้อมูลพระไม่สำเร็จ ลองรีเฟรชหน้าอีกครั้ง</p>';
+    else if (!L.length) h += '<p class="note">' + (ui.q ? 'ไม่พบพระที่ตรงกับ “' + esc(ui.q) + '” ลองพิมพ์คำอื่น หรือเลือกหมวด “ทั้งหมด”' : 'ยังไม่มีพระจัดแสดง') + '</p>';
+    else L.forEach(function(it, i){
+      h += '<button type="button" class="card" data-open="' + i + '" aria-label="ดูรายละเอียด ' + esc(it.name) + '"><div class="mat">' + badge(it, 'st-corner') + '<div class="plate' + (it.front ? ' hasimg' : '') + (st(it) === 'sold' ? ' is-sold' : '') + '">' + pic(it.front, it.name) + '</div></div><div class="label"><div style="min-width:0"><div class="name">' + esc(it.name) + '</div><div class="meta">' + meta(it) + '</div></div></div></button>';
+    });
+    h += '</div></section>';
+    if (site['ชื่อผู้สะสม'] || site['เรื่องราวผู้สะสม']) h += '<section id="about" class="about"><div class="wrap"><div class="about-mark" aria-hidden="true"><svg width="40%" viewBox="0 0 36 45" fill="none" stroke="currentColor" stroke-width=".6"><path d="M18 2 C8 2 4 14 4 25 L4 43 L32 43 L32 25 C32 14 28 2 18 2 Z"/><path d="M18 9 C13 9 10.5 16 10.5 24 L10.5 36 L25.5 36 L25.5 24 C25.5 16 23 9 18 9 Z"/><circle cx="18" cy="17" r="3"/></svg></div><div class="about-text"><p class="eyebrow">เกี่ยวกับผู้สะสม</p><h2>' + esc(site['ชื่อผู้สะสม']) + '</h2><p>' + esc(site['เรื่องราวผู้สะสม']) + '</p></div></div></section>';
+    var c = [['LINE', site['LINE']], ['โทร', site['โทร']], ['Facebook', site['Facebook']]].filter(function(x){ return x[1]; });
+    h += '<footer id="contact"><div class="wrap"><h2>ติดต่อ</h2><p style="margin:0;color:var(--muted)">สนใจพูดคุยเรื่องพระเครื่อง หรือนัดชมองค์จริง ติดต่อได้ที่</p>' + (site['ที่อยู่'] ? '<p style="margin:0;color:var(--fg2);white-space:pre-line;max-width:40rem">ที่อยู่: ' + esc(site['ที่อยู่']) + '</p>' : '') + '<div class="contacts">' + c.map(function(x){ return '<span>' + x[0] + ': ' + esc(x[1]) + '</span>'; }).join('') + '</div><div class="copy">© ' + new Date().getFullYear() + ' ' + esc(site['ชื่อแกลเลอรี']) + ' · <a href="#admin" style="color:var(--muted)">สำหรับผู้ดูแล</a></div></div></footer>';
+    if (ui.open >= 0 && ui.open < L.length) h += viewer(L);
+    app.innerHTML = h;
+    document.body.style.overflow = ui.open >= 0 ? 'hidden' : '';
+  }
+  function viewer(L){
+    var it = L[ui.open], src = (it[ui.side] || '').replace('&sz=w1200', '&sz=w2400');
+    var zoomed = ui.z > 1;
+    var h = '<div class="overlay" data-act="bg"><div class="dialog" role="dialog" aria-modal="true" aria-label="' + esc(it.name) + '"><div class="view' + (src ? ' hasimg' : '') + (zoomed ? ' zoomed' : '') + '">';
+    if (src) {
+      h += '<img src="' + esc(src) + '" alt="' + esc(it.name) + '" draggable="false" data-zoomimg style="' + zstyle() + '">';
+      h += '<div class="zoombar" role="group" aria-label="ซูมรูป"><button type="button" class="zbtn" data-act="zout" aria-label="ซูมออก"' + (ui.z <= 1 ? ' disabled' : '') + '><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M8 11h6M16.5 16.5L21 21"/></svg></button><span class="zlevel">' + Math.round(ui.z * 100) + '%</span><button type="button" class="zbtn" data-act="zin" aria-label="ซูมเข้า"' + (ui.z >= ZMAX ? ' disabled' : '') + '><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M8 11h6M11 8v6M16.5 16.5L21 21"/></svg></button>' + (zoomed ? '<button type="button" class="zbtn ztext" data-act="zreset">พอดีจอ</button>' : '') + '</div>';
+      if (zoomed) h += '<span class="zhint">ลากรูปเพื่อเลื่อนดู</span>';
+    } else h += '<span style="color:var(--accent)">' + AMULET + '</span><span>ยังไม่มีรูป' + (ui.side === 'back' ? 'ด้านหลัง' : ui.side === 'extra' ? 'เพิ่มเติม' : '') + '</span>';
+    h += '</div>';
+    h += '<div class="info"><div class="row"><span class="vhead"><span class="no">' + esc(it.cat) + '</span>' + badge(it) + '</span><button type="button" class="iconbtn" data-act="close" aria-label="ปิด"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M6 6 L18 18 M18 6 L6 18"/></svg></button></div><h2>' + esc(it.name) + '</h2>';
+    h += '<div class="pills" role="group" aria-label="รูปของพระ">' + [['front', 'ด้านหน้า'], ['back', 'ด้านหลัง'], ['extra', 'รูปเพิ่มเติม']].filter(function(x){ return x[0] !== 'extra' || it.extra; }).map(function(x){ return '<button type="button" class="pill" data-side="' + x[0] + '" aria-pressed="' + (ui.side === x[0]) + '">' + x[1] + '</button>'; }).join('') + '</div><dl class="spec">';
+    [['ยุค / ปีที่สร้าง', it.era], ['เนื้อพระ', it.material], ['ขนาด', it.size], ['ที่มา', it.source]].forEach(function(r){ if (r[1]) h += '<dt>' + r[0] + '</dt><dd>' + esc(r[1]) + '</dd>'; });
+    h += '</dl>' + (it.story ? '<p class="story">' + esc(it.story) + '</p>' : '');
+    if (st(it) === 'ask') h += '<div><button type="button" class="btn askbtn" data-act="ask">สอบถามองค์นี้</button></div>';
+    else if (st(it) === 'sold') h += '<p class="soldnote">องค์นี้มีเจ้าของแล้ว จัดแสดงไว้เพื่อชม</p>';
+    if (L.length > 1) h += '<div class="row" style="margin-top:auto;padding-top:8px"><button type="button" class="btn" data-act="prev">← องค์ก่อนหน้า</button><button type="button" class="btn" data-act="next">องค์ถัดไป →</button></div>';
+    return h + '</div></div></div>';
+  }
+  app.addEventListener('click', function(e){
+    var t = e.target.closest('[data-act],[data-cat],[data-open],[data-side]'); if (!t) return;
+    var a = t.getAttribute('data-act'), n = list().length;
+    if (a === 'zin' || a === 'zout' || a === 'zreset') {
+      setZoom(a === 'zreset' ? 1 : ui.z + (a === 'zin' ? 0.5 : -0.5));
+      var keep = app.querySelector('[data-act="' + a + '"]'); if (keep && !keep.disabled) keep.focus();
+      return;
+    }
+    if (a === 'clrq') { ui.q = ''; render(); var qi = document.getElementById('q'); if (qi) qi.focus(); return; }
+    if (a === 'ask') { ui.open = -1; ui.z = 1; ui.px = 0; ui.py = 0; render(); var ct = document.getElementById('contact'); if (ct) ct.scrollIntoView({ behavior: 'smooth' }); return; }
+    if (a === 'bg') { if (e.target !== t) return; ui.open = -1; }
+    else if (a === 'close') ui.open = -1;
+    else if (a === 'prev') { ui.open = (ui.open - 1 + n) % n; ui.side = 'front'; }
+    else if (a === 'next') { ui.open = (ui.open + 1) % n; ui.side = 'front'; }
+    else if (t.hasAttribute('data-cat')) ui.cat = t.getAttribute('data-cat');
+    else if (t.hasAttribute('data-open')) { ui.open = +t.getAttribute('data-open'); ui.side = 'front'; }
+    else if (t.hasAttribute('data-side')) ui.side = t.getAttribute('data-side');
+    ui.z = 1; ui.px = 0; ui.py = 0;
+    render();
+  });
+
+  /* ซูมและลากรูป */
+  var ZMAX = 4, drag = null;
+  ui.z = 1; ui.px = 0; ui.py = 0;
+  function zstyle(){ return 'transform:scale(' + ui.z + ') translate(' + ui.px + 'px,' + ui.py + 'px)'; }
+  function clampPan(){
+    var im = app.querySelector('[data-zoomimg]'); if (!im) return;
+    var mx = im.clientWidth * (ui.z - 1) / (2 * ui.z), my = im.clientHeight * (ui.z - 1) / (2 * ui.z);
+    ui.px = Math.max(-mx, Math.min(mx, ui.px)); ui.py = Math.max(-my, Math.min(my, ui.py));
+  }
+  function setZoom(z){
+    ui.z = Math.max(1, Math.min(ZMAX, z));
+    if (ui.z === 1) { ui.px = 0; ui.py = 0; }
+    render(); clampPan();
+    var im = app.querySelector('[data-zoomimg]'); if (im) im.style.transform = zstyle().slice(10);
+  }
+  app.addEventListener('dblclick', function(e){ if (e.target.hasAttribute && e.target.hasAttribute('data-zoomimg')) setZoom(ui.z > 1 ? 1 : 2.5); });
+  app.addEventListener('wheel', function(e){
+    if (!(e.target.hasAttribute && e.target.hasAttribute('data-zoomimg'))) return;
+    e.preventDefault(); setZoom(ui.z + (e.deltaY < 0 ? 0.25 : -0.25));
+  }, { passive: false });
+  app.addEventListener('pointerdown', function(e){
+    var im = e.target; if (!(im.hasAttribute && im.hasAttribute('data-zoomimg')) || ui.z <= 1) return;
+    e.preventDefault(); im.setPointerCapture(e.pointerId);
+    drag = { id: e.pointerId, x: e.clientX, y: e.clientY, px: ui.px, py: ui.py, im: im };
+    im.classList.add('grabbing');
+  });
+  app.addEventListener('pointermove', function(e){
+    if (!drag || e.pointerId !== drag.id) return;
+    ui.px = drag.px + (e.clientX - drag.x) / ui.z; ui.py = drag.py + (e.clientY - drag.y) / ui.z;
+    clampPan(); drag.im.style.transform = zstyle().slice(10);
+  });
+  function endDrag(e){ if (drag && e.pointerId === drag.id) { drag.im.classList.remove('grabbing'); drag = null; } }
+  app.addEventListener('pointerup', endDrag);
+  app.addEventListener('pointercancel', endDrag);
+  app.addEventListener('input', function(e){ if (e.target.id !== 'q' || e.isComposing) return; ui.q = e.target.value; ui.open = -1; var pos = e.target.selectionStart; render(); var qi = document.getElementById('q'); if (qi) { qi.focus(); try { qi.setSelectionRange(pos, pos); } catch (er) {} } });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && ui.open >= 0) { ui.open = -1; render(); } });
+  render(); load();
+  window.wittGalleryReload = load;
+})();
+</script>
+
+<!-- ===================== หน้าเข้าสู่ระบบผู้ดูแล ===================== -->
+<style>
+#admin{position:fixed;inset:0;z-index:100;background:var(--bg);overflow-y:auto;--danger:#F2B8A6}
+#admin .ahead{border-bottom:1px solid var(--line)}
+#admin .ahead .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;padding-block:16px}
+#admin .brand{font-size:20px}
+#admin .btn:hover{border-color:var(--fg2)}
+#admin .btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);font-weight:600}
+#admin .btn.danger{border-color:var(--danger);color:var(--danger)}
+#admin .btn[disabled]{opacity:.55;cursor:default}
+#admin .login{min-height:calc(100vh - 80px);display:flex;align-items:center;justify-content:center;padding-block:48px}
+#admin .acard{width:100%;max-width:420px;background:var(--surface);border:1px solid var(--line);padding:36px;display:flex;flex-direction:column;gap:20px}
+@media (max-width:480px){#admin .acard{padding:24px 18px}}
+#admin h1,#admin h2{margin:0;font-family:var(--display);font-weight:500;line-height:1.35}
+#admin h1{font-size:30px} #admin h2{font-size:26px}
+#admin .fld{display:flex;flex-direction:column;gap:6px;min-width:0}
+#admin .fld.full{grid-column:1/-1}
+#admin .fld label{font-size:14px;color:var(--fg2);font-weight:500}
+#admin .fld input,#admin .fld textarea,#admin .fld select{width:100%;min-height:44px;padding:10px 12px;border-radius:6px;border:1px solid var(--line2);background:var(--deep);color:var(--fg);font:inherit}
+#admin .fld textarea{min-height:120px;resize:vertical}
+#admin .hint{font-size:13px;color:var(--muted)}
+#admin .msg{margin:0;font-size:15px;color:var(--accent)} #admin .msg.err{color:var(--danger)}
+#admin main.panel{padding-block:40px 80px;display:flex;flex-direction:column;gap:28px}
+#admin .list{display:flex;flex-direction:column;border-top:1px solid var(--line)}
+#admin .li{display:flex;align-items:center;gap:16px;padding-block:12px;border-bottom:1px solid var(--line);min-width:0;flex-wrap:wrap}
+#admin .thumb{width:56px;height:70px;flex:none;background:var(--plate);display:flex;align-items:center;justify-content:center;overflow:hidden;color:var(--accent)}
+#admin .thumb img{width:100%;height:100%;object-fit:cover}
+#admin .li .t{flex:1 1 200px;min-width:0}
+#admin .li .t b{display:block;font-weight:500;overflow-wrap:anywhere}
+#admin .li .t span{color:var(--muted);font-size:14px}
+#admin .tag{display:inline-block;margin-left:8px;padding:0 8px;border-radius:4px;background:var(--deep);color:var(--danger);font-size:12px;vertical-align:middle}
+#admin .acts{display:flex;gap:8px;flex-wrap:wrap}
+#admin .confirm{display:flex;flex-wrap:wrap;align-items:center;gap:8px;color:var(--danger);font-size:14px}
+#admin form.f{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 20px;background:var(--surface);border:1px solid var(--line);padding:28px}
+@media (max-width:640px){#admin form.f{grid-template-columns:minmax(0,1fr);padding:20px 16px}}
+#admin .photo{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+#admin .photo .thumb{width:84px;height:105px}
+#admin .empty{color:var(--muted);padding-block:24px}
+</style>
+<div id="admin" hidden></div>
+<script>
+/* ====== ลิงก์ระบบหลังบ้าน (Google Apps Script) ====== */
+var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyohRmDnVFkgBIWJQgjNdbGKMk9c0jJAQUg_yvlRZw3lQDmGeDz9piSg5J1cZKHVT_S/exec';
+/* =================================================== */
+(function(){
+  var app = document.getElementById('admin');
+  var ui = { pw: null, items: [], loading: false, msg: '', err: false, edit: null, draft: null, del: null, saving: false, changed: false };
+  try { ui.pw = sessionStorage.getItem('witt_pw'); } catch (e) {}
+  var AM = '<svg width="36" height="45" viewBox="0 0 36 45" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M18 2 C8 2 4 14 4 25 L4 43 L32 43 L32 25 C32 14 28 2 18 2 Z"/><path d="M18 9 C13 9 10.5 16 10.5 24 L10.5 36 L25.5 36 L25.5 24 C25.5 16 23 9 18 9 Z"/></svg>';
+  var FIELDS = [['name','ชื่อพระ',1],['cat','หมวด',0],['era','ยุค / ปีที่สร้าง',0],['material','เนื้อพระ',0],['size','ขนาด',0],['source','ที่มา',1],['story','ประวัติและเรื่องราว',2]];
+
+  function esc(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+  function img(u){ u = (u || '').trim(); if (!u) return ''; var m = u.match(/\/d\/([\w-]+)/) || u.match(/[?&]id=([\w-]+)/); return (m && /google\.com/.test(u)) ? 'https://drive.google.com/thumbnail?id=' + m[1] + '&sz=w400' : u; }
+  function api(body){
+    body.password = ui.pw;
+    return fetch(SCRIPT_URL, { method: 'POST', body: JSON.stringify(body) }).then(function(r){ return r.json(); }).then(function(d){
+      if (!d.ok && d.error === 'wrong_password') { logout('รหัสผ่านไม่ถูกต้อง'); throw { handled: true }; }
+      if (!d.ok) throw new Error(d.error || 'เกิดข้อผิดพลาด');
+      return d;
+    });
+  }
+  function fail(e){ if (e && e.handled) return; ui.loading = false; ui.saving = false; ui.err = true; ui.msg = (e && e.message && !/Failed to fetch|Load failed|NetworkError/i.test(e.message)) ? e.message : 'ส่งข้อมูลไม่สำเร็จ ตรวจอินเทอร์เน็ตแล้วกดบันทึกอีกครั้ง ถ้ายังไม่ได้ ลองบันทึกโดยแนบรูปทีละรูป'; render(); }
+  function logout(m){ ui.pw = null; try { sessionStorage.removeItem('witt_pw'); } catch (e) {} ui.msg = m || ''; ui.err = !!m; ui.edit = null; render(); }
+  function load(){ ui.loading = true; render(); api({ action: 'list' }).then(function(d){ ui.items = d.items; ui.loading = false; render(); }).catch(fail); }
+
+  function open(){ app.hidden = false; document.body.style.overflow = 'hidden'; ui.msg = ''; render(); if (ui.pw) load(); }
+  function close(){
+    app.hidden = true; document.body.style.overflow = '';
+    if (location.hash === '#admin') history.replaceState(null, '', location.pathname + location.search);
+    if (ui.changed && window.wittGalleryReload) { ui.changed = false; window.wittGalleryReload(); }
+  }
+
+  function header(){
+    return '<header class="ahead"><div class="wrap"><span class="brand"><svg width="28" height="28" viewBox="0 0 36 36" fill="none" stroke="var(--accent)" stroke-width="1.6" aria-hidden="true"><path d="M18 3 C10 3 7 12 7 20 L7 33 L29 33 L29 20 C29 12 26 3 18 3 Z"/><path d="M18 10 C14 10 12.5 15 12.5 20 L12.5 28 L23.5 28 L23.5 20 C23.5 15 22 10 18 10 Z"/></svg>วิทย์ ท่าเรือ</span><div class="acts"><button type="button" class="btn" data-act="close">กลับหน้าเว็บ</button>' + (ui.pw ? '<button type="button" class="btn" data-act="logout">ออกจากระบบ</button>' : '') + '</div></div></header>';
+  }
+  function loginView(){
+    return '<div class="wrap login"><form class="acard" id="loginform"><div><p class="eyebrow">สำหรับผู้ดูแล</p><h1>เข้าสู่ระบบ</h1></div>'
+      + '<div class="fld"><label for="pw">รหัสผ่าน</label><input type="password" id="pw" autocomplete="current-password" required></div>'
+      + (ui.msg ? '<p class="msg' + (ui.err ? ' err' : '') + '" role="alert">' + esc(ui.msg) + '</p>' : '')
+      + '<button type="submit" class="btn primary"' + (ui.loading ? ' disabled' : '') + '>' + (ui.loading ? 'กำลังตรวจสอบ…' : 'เข้าสู่ระบบ') + '</button></form></div>';
+  }
+  function listView(){
+    var h = '<div class="row"><div><p class="eyebrow">จัดการคอลเลกชัน</p><h2>พระเครื่องทั้งหมด</h2></div><div class="acts"><button type="button" class="btn" data-act="reload">โหลดใหม่</button><button type="button" class="btn primary" data-act="new">+ เพิ่มพระองค์ใหม่</button></div></div>';
+    if (ui.msg) h += '<p class="msg' + (ui.err ? ' err' : '') + '" role="status">' + esc(ui.msg) + '</p>';
+    if (ui.loading) return h + '<p class="empty">กำลังโหลดรายการ…</p>';
+    if (!ui.items.length) return h + '<p class="empty">ยังไม่มีพระในชีต กด “เพิ่มพระองค์ใหม่” เพื่อเริ่ม</p>';
+    h += '<div class="list">';
+    ui.items.forEach(function(it, i){
+      var hidden = /ไม่/.test(it.show), t = img(it.front);
+      h += '<div class="li"><div class="thumb">' + (t ? '<img src="' + esc(t) + '" alt="" loading="lazy">' : AM) + '</div><div class="t"><b>' + esc(it.name) + (hidden ? '<span class="tag">ไม่แสดง</span>' : '') + ' <span class="st st-' + (/ขาย/.test(it.status) ? 'sold' : /สอบถาม/.test(it.status) ? 'ask' : 'show') + '" style="margin-left:6px;vertical-align:middle">' + (/ขาย/.test(it.status) ? 'ขายแล้ว' : /สอบถาม/.test(it.status) ? 'สอบถาม' : 'โชว์') + '</span></b><span>' + esc([it.cat, it.era, it.material].filter(Boolean).join(' · ')) + '</span></div><div class="acts">';
+      if (ui.del === i) h += '<div class="confirm">ลบองค์นี้ออกจากชีต?<button type="button" class="btn danger" data-delyes="' + i + '"' + (ui.saving ? ' disabled' : '') + '>ลบ</button><button type="button" class="btn" data-act="delno">ไม่ลบ</button></div>';
+      else h += '<button type="button" class="btn" data-edit="' + i + '">แก้ไข</button><button type="button" class="btn danger" data-del="' + i + '">ลบ</button>';
+      h += '</div></div>';
+    });
+    return h + '</div>';
+  }
+  function photo(side, label){
+    var d = ui.draft, src = d[side + 'Data'] || img(d[side]);
+    return '<div class="fld"><label for="f-' + side + '">' + label + '</label><div class="photo"><div class="thumb">' + (src ? '<img src="' + esc(src) + '" alt="">' : AM) + '</div><div class="acts" style="flex-direction:column;align-items:flex-start;min-width:0"><input type="file" id="f-' + side + '" accept="image/*" data-photo="' + side + '" style="max-width:100%">' + (src ? '<button type="button" class="btn" data-rm="' + side + '">เอารูปออก</button>' : '') + '</div></div></div>';
+  }
+  function formView(){
+    var d = ui.draft, isNew = ui.edit === 'new';
+    var cats = []; ui.items.forEach(function(i){ if (i.cat && cats.indexOf(i.cat) < 0) cats.push(i.cat); });
+    var h = '<div class="row"><div><p class="eyebrow">' + (isNew ? 'เพิ่มข้อมูล' : 'แก้ไขข้อมูล') + '</p><h2>' + (isNew ? 'เพิ่มพระองค์ใหม่' : esc(d.name)) + '</h2></div></div>';
+    if (ui.msg) h += '<p class="msg' + (ui.err ? ' err' : '') + '" role="alert">' + esc(ui.msg) + '</p>';
+    h += '<form class="f" id="itemform" novalidate>';
+    FIELDS.forEach(function(f){
+      var full = f[2] ? ' full' : '', v = esc(d[f[0]]);
+      var input = f[2] === 2 ? '<textarea id="f-' + f[0] + '">' + v + '</textarea>' : '<input id="f-' + f[0] + '" value="' + v + '"' + (f[0] === 'cat' ? ' list="cats"' : '') + (f[0] === 'name' ? ' required' : '') + '>';
+      h += '<div class="fld' + full + '"><label for="f-' + f[0] + '">' + f[1] + '</label>' + input + (f[0] === 'cat' ? '<span class="hint">เลือกหมวดเดิมหรือพิมพ์หมวดใหม่</span>' : '') + '</div>';
+    });
+    h += '<datalist id="cats">' + cats.map(function(c){ return '<option value="' + esc(c) + '"></option>'; }).join('') + '</datalist>';
+    h += '<div class="fld"><label for="f-show">การแสดงผล</label><select id="f-show"><option value="แสดง"' + (/ไม่/.test(d.show) ? '' : ' selected') + '>แสดงบนเว็บ</option><option value="ไม่แสดง"' + (/ไม่/.test(d.show) ? ' selected' : '') + '>ซ่อนไว้ก่อน</option></select></div>';
+    var sv = /ขาย/.test(d.status) ? 'ขายแล้ว' : /สอบถาม/.test(d.status) ? 'สอบถาม' : 'โชว์';
+    h += '<div class="fld"><label for="f-status">สถานะ</label><select id="f-status">' + ['โชว์', 'สอบถาม', 'ขายแล้ว'].map(function(o){ return '<option value="' + o + '"' + (o === sv ? ' selected' : '') + '>' + o + '</option>'; }).join('') + '</select></div>';
+    h += photo('front', 'รูปด้านหน้า') + photo('back', 'รูปด้านหลัง') + photo('extra', 'รูปเพิ่มเติม');
+    h += '<div class="fld full"><span class="hint">ระบบย่อรูปและเก็บไว้ในโฟลเดอร์ Google Drive ของคุณให้อัตโนมัติ</span></div>';
+    h += '<div class="row fld full"><button type="button" class="btn" data-act="cancel">ยกเลิก</button><button type="submit" class="btn primary"' + (ui.saving ? ' disabled' : '') + '>' + (ui.saving ? 'กำลังบันทึก…' : 'บันทึก') + '</button></div></form>';
+    return h;
+  }
+  function render(){
+    if (app.hidden) return;
+    app.innerHTML = header() + (!ui.pw ? loginView() : '<main class="wrap panel">' + (ui.edit ? formView() : listView()) + '</main>');
+  }
+  function keep(){ if (!ui.draft) return; FIELDS.concat([['show'], ['status']]).forEach(function(f){ var el = document.getElementById('f-' + f[0]); if (el) ui.draft[f[0]] = el.value; }); }
+  function shrink(file){
+    return new Promise(function(res, rej){
+      var url = URL.createObjectURL(file), im = new Image();
+      im.onload = function(){ var s = Math.min(1, 1100 / Math.max(im.width, im.height)), c = document.createElement('canvas'); c.width = Math.round(im.width * s); c.height = Math.round(im.height * s); var g = c.getContext('2d'); g.fillStyle = '#fff'; g.fillRect(0, 0, c.width, c.height); g.drawImage(im, 0, 0, c.width, c.height); URL.revokeObjectURL(url); res(c.toDataURL('image/jpeg', 0.78)); };
+      im.onerror = function(){ URL.revokeObjectURL(url); rej(); };
+      im.src = url;
+    });
+  }
+
+  app.addEventListener('submit', function(e){
+    e.preventDefault();
+    if (e.target.id === 'loginform') {
+      ui.pw = document.getElementById('pw').value; ui.loading = true; ui.msg = ''; render();
+      api({ action: 'login' }).then(function(){ try { sessionStorage.setItem('witt_pw', ui.pw); } catch (er) {} ui.loading = false; load(); }).catch(function(er){ if (er && er.handled) { ui.loading = false; render(); return; } ui.pw = null; fail(er); });
+    } else if (e.target.id === 'itemform') {
+      keep();
+      if (!String(ui.draft.name || '').trim()) { ui.msg = 'ใส่ชื่อพระก่อนบันทึก'; ui.err = true; render(); document.getElementById('f-name').focus(); return; }
+      var isNew = ui.edit === 'new', d = ui.draft;
+      ui.saving = true; ui.msg = ''; render();
+      var req = isNew ? { action: 'add', item: d } : { action: 'update', row: d.row, expectName: d.origName, item: d };
+      api(req).then(function(){ ui.saving = false; ui.changed = true; ui.edit = null; ui.draft = null; ui.err = false; ui.msg = isNew ? 'เพิ่มพระแล้ว' : 'บันทึกการแก้ไขแล้ว'; load(); }).catch(fail);
+    }
+  });
+  app.addEventListener('change', function(e){
+    var side = e.target.getAttribute && e.target.getAttribute('data-photo');
+    if (!side || !e.target.files || !e.target.files[0]) return;
+    keep();
+    shrink(e.target.files[0]).then(function(u){ ui.draft[side + 'Data'] = u; ui.msg = ''; render(); }).catch(function(){ ui.msg = 'เปิดไฟล์รูปนี้ไม่ได้ ลองใช้ไฟล์ JPG หรือ PNG'; ui.err = true; render(); });
+  });
+  app.addEventListener('click', function(e){
+    var t = e.target.closest('[data-act],[data-edit],[data-del],[data-delyes],[data-rm]'); if (!t) return;
+    var a = t.getAttribute('data-act');
+    if (a === 'close') return close();
+    if (a === 'logout') return logout();
+    if (a === 'reload') { ui.msg = ''; return load(); }
+    if (a === 'new') { ui.edit = 'new'; ui.msg = ''; ui.draft = { name: '', cat: '', era: '', material: '', size: '', source: '', story: '', front: '', back: '', extra: '', show: 'แสดง', status: 'โชว์' }; }
+    else if (a === 'cancel') { ui.edit = null; ui.draft = null; ui.msg = ''; }
+    else if (t.hasAttribute('data-edit')) { var it = ui.items[+t.getAttribute('data-edit')]; ui.edit = it.row; ui.msg = ''; ui.draft = JSON.parse(JSON.stringify(it)); ui.draft.origName = it.name; }
+    else if (t.hasAttribute('data-rm')) { keep(); var s = t.getAttribute('data-rm'); ui.draft[s] = ''; delete ui.draft[s + 'Data']; }
+    else if (t.hasAttribute('data-del')) { ui.del = +t.getAttribute('data-del'); }
+    else if (a === 'delno') { ui.del = null; }
+    else if (t.hasAttribute('data-delyes')) {
+      var x = ui.items[+t.getAttribute('data-delyes')]; ui.saving = true; render();
+      api({ action: 'delete', row: x.row, expectName: x.name }).then(function(){ ui.saving = false; ui.changed = true; ui.del = null; ui.err = false; ui.msg = 'ลบแล้ว'; load(); }).catch(function(er){ ui.del = null; fail(er); });
+      return;
+    }
+    render();
+  });
+  document.addEventListener('click', function(e){
+    var a = e.target.closest && e.target.closest('a[href="#admin"]');
+    if (a) { e.preventDefault(); open(); }
+  });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && !app.hidden && !ui.edit) close(); });
+  if (location.hash === '#admin') open();
+})();
+</script>
+</body>
+</html>
