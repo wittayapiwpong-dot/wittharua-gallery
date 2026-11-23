@@ -164,7 +164,7 @@ var TAB_SITE = 'ข้อมูลเว็บ';
       function col(row, name){ var i = head.indexOf(name); return i < 0 ? '' : (row[i] || '').trim(); }
       items = rows.map(function(row){
         return { name: col(row, 'ชื่อพระ'), cat: col(row, 'หมวด') || 'อื่น ๆ', era: col(row, 'ยุค / ปีที่สร้าง'), material: col(row, 'เนื้อพระ'), size: col(row, 'ขนาด'), source: col(row, 'ที่มา'), story: col(row, 'ประวัติและเรื่องราว'), front: img(col(row, 'ลิงก์รูปด้านหน้า')), back: img(col(row, 'ลิงก์รูปด้านหลัง')), show: col(row, 'แสดงบนเว็บ'), status: col(row, 'สถานะ'), extra: img(col(row, 'ลิงก์รูปเพิ่มเติม')) };
-      }).filter(function(it){ return it.name && !/^(ไม่|ไม่แสดง|no|false|ซ่อน)$/i.test(it.show); });
+      }).filter(function(it){ return it.name && !/^(ไม่|ไม่แสดง|no|false|ซ่อน)$/i.test(it.show); }).reverse(); // องค์ที่เพิ่มล่าสุด (แถวล่างสุดในชีต) ขึ้นก่อน
       r[1].forEach(function(row){ var k = (row[0] || '').trim(); if (k && k !== 'หัวข้อ') site[k] = (row[1] || '').trim(); });
       state = 'ready'; render();
     }).catch(function(){ state = 'error'; render(); });
